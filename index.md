@@ -2,21 +2,52 @@
 
 layout: col-sidebar
 title: OWASP Damn Vulnerable Thick Client Application
-tags: example-tag
+tags: DVTA DVTA2.0
 level: 1
-type: 
-pitch: A very brief, one-line description of your project
+type: other
+pitch: A Vulnerable Thick Client Application developed using C# to demonstrate vulnerabilities in legacy 2-tier applications.
 
 ---
 
-This is an example of a Project or Chapter Page.  Please change these items to indicate the actual information you wish to present.  In addition to this information, the 'front-matter' above this text should be modified to reflect your actual information.  An explanation of each of the front-matter items is below:
+# DVTA 2.0 
 
-layout: This is the layout used by project and chapter pages.  You should leave this value as col-sidebar
+(Requires .NET version 4.5)
 
-title: This is the title of your project or chapter page, usually the name.  For example, OWASP Zed Attack Proxy or OWASP Baltimore
+Damn Vulnerable Thick Client Application (DVTA) is a Vulnerable Thick Client Application developed in C# .NET
 
-tags: This is a space-delimited list of tags you associate with your project or chapter.  If you are using tabs, at least one of these tags should be unique in order to be used in the tabs files (an example tab is included in this repo) 
+## Some of the vulnerabilities covered in this Application:
 
-level: For projects, this is your project level (2 - Incubator, 3 - Lab, 4 - Flagship)
+1. Insecure local data storage
+2. Insecure logging
+3. Weak cryptography
+4. Lack of code obfuscation
+5. Exposed decryption logic
+6. SQL Injection
+7. CSV Injection
+8. Sensitive data in memory
+9. DLL Hijacking
+10. Clear text data in transit
+11. Client side protection bypasses using Reverse Engineering
 
-type: code, tool, documentation, or other
+## Usage:
+- Get the compiled binary from releases. Alternatively, clone the project and compile from the source.
+
+- Set up SQL Server and FTP Server - instructions shown here https://youtu.be/rx8mtI1HU5c
+
+- Queries used in the video:
+
+    - QUERY TO CREATE "USERS" TABLE:
+
+    CREATE TABLE "users" ( "id" INT IDENTITY(0,1) NOT NULL, "username" VARCHAR(100) NOT NULL, "password" VARCHAR(100) NOT NULL, "email" VARCHAR(100) NULL DEFAULT NULL, "isadmin" INT NULL DEFAULT '0', PRIMARY KEY ("id") )
+
+    - QUERY TO INSERT DATA INTO "USERS" TABLE:
+
+    INSERT INTO dbo.users (username, password, email, isadmin) VALUES ('admin','admin123','admin@damnvulnerablethickclientapp.com',1), ('rebecca','rebecca','rebecca@test.com',0), ('raymond','raymond','raymond@test.com',0);
+
+    - QUERY TO CREATE "EXPENSES" TABLE:
+
+    CREATE TABLE "expenses" ( "id" INT IDENTITY(0,1) NOT NULL, "email" VARCHAR(100) NOT NULL, "item" VARCHAR(100) NOT NULL, "price" VARCHAR(100) NOT NULL, "date" VARCHAR(100) NOT NULL, "time" VARCHAR(100) NULL DEFAULT NULL, PRIMARY KEY ("id") )
+
+- Configure the client application to communicate with SQL Server and FTP Server - Instructions shown here https://youtu.be/IBdk2uOessc
+
+- Explore and exploit
